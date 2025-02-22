@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário do Problema</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Formulário do Problema</h1>
+    <form method="POST">
+        <label for="var1">Digite um número:</label>
+        <input type="text" id="var1" name="var1" required><br><br>
+
+        <label for="var2">Digite outro número:</label>
+        <input type="text" id="var2" name="var2" required><br><br>
+
+        <input type="submit" value="Calcular">
+    </form>
+</body>
+</html>
