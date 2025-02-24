@@ -1,5 +1,11 @@
 from flask import Flask, render_template, request
+from app.controllers.ProblemaController import ProblemaController
+from app.controllers.AutorController import AutorController
+from app.controllers.StaticController import StaticController
+
 app = Flask(__name__)
+app.add_url_rule('/problema', 'problema', ProblemaController.problema)
+app.add_url_rule('/resultado', 'resultado', ProblemaController.resultado)
 
 # Rota para o formulário de entrada
 @app.route('/index', methods=['GET', 'POST'])

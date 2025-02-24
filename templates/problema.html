@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Resultado do Cálculo</h1>
+    {% if resultado %}
+        <p>O resultado da soma de {{ var1 }} e {{ var2 }} é: {{ resultado }}</p>
+    {% else %}
+        <p>Por favor, insira os valores no formulário.</p>
+    {% endif %}
+    <a href="/index">Voltar ao formulário</a>
+</body>
+</html>
