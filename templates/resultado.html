@@ -5,11 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultado</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script>
+        // Função para adicionar um novo elemento HTML com o resultado
+        function adicionarElemento() {
+            const resultadoDiv = document.createElement("div");
+            resultadoDiv.classList.add("resultado-item");
+
+            const resultadoTexto = document.createElement("p");
+            resultadoTexto.innerHTML = `Resultado: ${document.getElementById("resultado").innerText}`;
+            resultadoDiv.appendChild(resultadoTexto);
+
+            // Adiciona o novo elemento ao corpo da página
+            document.body.appendChild(resultadoDiv);
+
+            // Reproduz o som de clique
+            playClickSound();
+        }
+
+        // Função para adicionar um novo item de cálculo à lista
+        function adicionarNovoItem() {
+            const listaResultados = document.getElementById("resultados-lista");
+            const novoItem = document.createElement("li");
+            novoItem.innerText = `Soma: ${document.getElementById("var1").value} + ${document.getElementById("var2").value} = ${document.getElementById("resultado").innerText}`;
+            listaResultados.appendChild(novoItem);
+
+            // Reproduz o som de clique
+            playClickSound();
+        }
+
+        // Função para apagar a classe CSS de um elemento
+        function apagarClasse() {
+            const elemento = document.getElementById("resultado");
+            elemento.classList.remove("resultado-classe");
+
+            // Reproduz o som de clique
+            playClickSound();
+        }
+
+        // Função para reproduzir o som de clique
+        function playClickSound() {
+            const audio = new Audio('{{ url_for("static", filename="sounds/click-sound.mp3") }}');
+            audio.play();
+        }
+    </script>
 </head>
 <body>
-    <h1>Resultado do Cálculo</h1>
+<h1>Resultado do Cálculo</h1>
+
+<div id="resultado">
     <p>O resultado da soma de {{ var1 }} + {{ var2 }} é: {{ resultado }}</p>
-    <br>
-    <a href="/index">Voltar ao formulário</a>
-</body>
-</html>
+</div>
+
+<br>
+<button onclick="adicionarElemento()">Adicionar Novo Elemento</button>
+<br><br>
+<button onclick="adicionarNovoItem()">Adicionar à Lista de Resultados</button>
+<br><br>
+<button onclick="apagarClasse()">Apagar Classe CSS</button>
+
