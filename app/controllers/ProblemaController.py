@@ -1,22 +1,20 @@
 from flask import render_template, request
-from app.models.Problema import Problema
+
 
 class ProblemaController:
-
-    @staticmethod
-    def index():
-        return render_template('index.html')
-
     @staticmethod
     def problema():
-        if request.method == 'POST':
-            var1 = int(request.form.get('var1'))
-            var2 = int(request.form.get('var2'))
-            resultado = Problema.calcular(var1, var2)
-            return render_template('problema.html', resultado=resultado, var1=var1, var2=var2)
-        return render_template('problema.html', resultado=None)
+        return render_template('index.html')  # Página do formulário de entrada
 
     @staticmethod
     def resultado():
-        return render_template("resultado.html")  # Certifique-se de que resultado.html existe!
+        # Coletando os valores do formulário
+        var1 = request.form.get('var1')
+        var2 = request.form.get('var2')
 
+        if var1 and var2:
+            # Realizando o cálculo
+            resultado = int(var1) + int(var2)
+            return render_template('resultado.html', var1=var1, var2=var2, resultado=resultado)
+        else:
+            return "Erro: Campos vazios", 400

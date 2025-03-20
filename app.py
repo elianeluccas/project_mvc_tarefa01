@@ -1,21 +1,14 @@
 from flask import Flask, render_template, request
-from app.controllers.ProblemaController import ProblemaController
-from app.controllers.AutorController import AutorController
-from app.controllers.StaticController import StaticController
 
 app = Flask(__name__)
-app.add_url_rule('/problema', 'problema', ProblemaController.problema)
-app.add_url_rule('/resultado', 'resultado', ProblemaController.resultado)
 
 # Rota para o formulário de entrada
 @app.route('/index', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        # Coletando os dados do formulário
         var1 = request.form.get('var1')
         var2 = request.form.get('var2')
-        # Aqui você pode fazer cálculos com os valores recebidos
-        resultado = int(var1) + int(var2)  # Exemplo de cálculo simples
+        resultado = int(var1) + int(var2)
         return render_template('resultado.html', resultado=resultado, var1=var1, var2=var2)
     return render_template('index.html')
 
